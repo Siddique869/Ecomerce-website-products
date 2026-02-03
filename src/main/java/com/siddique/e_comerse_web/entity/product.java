@@ -53,7 +53,14 @@ public class product {
 	public void setImage_src(String image_src) {
 		this.image_src = image_src;
 	}
+// Add these two methods to your product entity class
+public int getId() {
+    return product_id;
+}
 
+public void setId(int id) {
+    this.product_id = id;
+}
 	@Column(nullable=false)
     private String name;
 	
