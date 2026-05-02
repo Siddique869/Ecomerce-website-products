@@ -1,12 +1,12 @@
-# Step 1: Build the application using Java 21
+# Step 1: Build the application
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Step 2: Run the application using Java 21 JRE
+# Step 2: Run the application
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-# This copies the generated WAR file to the runtime image
-COPY --from=build /target/*.war app.war
+# This line matches the artifactId and version in your pom.xml
+COPY --from=build /target/e-comerse-web-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.war"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
